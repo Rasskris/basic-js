@@ -1,25 +1,30 @@
 const CustomError = require("../extensions/custom-error");
 
 const chainMaker = {
+  chain: [],
   getLength() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    return this.chain.length;
   },
-  addLink(value) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+  addLink(value = '') {
+    this.chain = this.chain.concat(`( ${String(value)} )`);
+    return this;
   },
   removeLink(position) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    if (typeof position !== "number" || position > this.chain.length) {
+      this.chain = [];
+      throw new Error(`Position ${position} is invalid`);
+    }
+    this.chain = this.chain.filter((item, index) => index + 1 !== position);
+    return this;
   },
   reverseChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    this.chain = this.chain.slice().reverse();
+    return this;
   },
   finishChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    const result = this.chain.slice().join('~~');
+    this.chain = [];
+    return result;
   }
 };
 
