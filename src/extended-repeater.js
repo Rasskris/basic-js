@@ -1,8 +1,8 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function repeater(str, params) {
-  const repeatTimes = params.repeatTimes ?? 1;
-  const separator = params.separator ?? '+';
+  const repeatTimes = params.repeatTimes || 1;
+  const separator = params.separator || '+';
   const addition = String(params.addition) !== 'undefined' ? String(params.addition) : '';
   const additionRepeatTimes = params.additionRepeatTimes || 1;
   const additionSeparator = params.additionSeparator || '|';
